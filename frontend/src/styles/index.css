@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.15s ease !important;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  background-color: #f4f4f5;
+  color: #18181b;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dark body {
+  background-color: #09090b;
+  color: #fafafa;
+}
+
+::selection {
+  background: rgb(99 102 241 / 0.25);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(161 161 170 / 0.5);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(161 161 170 / 0.8);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgb(63 63 70 / 0.8);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgb(82 82 91 / 0.9);
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/80 backdrop-blur-xl dark:bg-zinc-900/80;
+  }
+
+  .glass-border {
+    @apply border border-zinc-200/80 dark:border-zinc-800/80;
+  }
+
+  .input-base {
+    @apply h-10 w-full rounded-xl border border-zinc-200 bg-white px-3.5 text-sm text-zinc-900 outline-none transition-all placeholder:text-zinc-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:border-primary-400 dark:focus:ring-primary-400/20;
+  }
+
+  .card-base {
+    @apply rounded-2xl border border-zinc-200/80 bg-white shadow-card dark:border-zinc-800/80 dark:bg-zinc-900;
+  }
+}
