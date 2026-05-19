@@ -135,12 +135,18 @@ Default admin from `.env.example`: `admin@smartleads.io` / `ChangeMe123!`
 | **Start Command** | `npm start` |
 | **Node Version** | `20` (see `backend/.node-version`) |
 
-**Environment variables** (copy from `backend/.env.example`):
+> **If deploy fails with `ECONNREFUSED 127.0.0.1:27017`:** your `MONGO_URI` is pointing to localhost. Use **MongoDB Atlas**, not local MongoDB. See [backend/docs/RENDER-DEPLOY.md](backend/docs/RENDER-DEPLOY.md).
 
-- `MONGO_URI` — MongoDB Atlas connection string
-- `JWT_ACCESS_SECRET` — long random string (32+ chars)
-- `CORS_ORIGIN` — `https://smart-leads-woad.vercel.app`
-- `NODE_ENV` — `production`
+**Environment variables** (required on Render):
+
+| Variable | Example |
+|----------|---------|
+| `MONGO_URI` | `mongodb+srv://user:pass@cluster0.xxx.mongodb.net/smart-leads?retryWrites=true&w=majority` |
+| `JWT_ACCESS_SECRET` | 32+ character random string |
+| `CORS_ORIGIN` | `https://smart-leads-woad.vercel.app` |
+| `NODE_ENV` | `production` |
+
+**Do not use** `mongodb://localhost:27017/...` on Render.
 
 ---
 

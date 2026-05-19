@@ -25,4 +25,19 @@ if (!parsed.success) {
   throw new Error('Invalid environment variables');
 }
 
-export const env = parsed.data;
+const data = parsed.data;
+
+if (data.NODE_ENV === 'production') {
+  const isLocalMongo =
+    data.MONGO_URI.includes('localhost') ||
+    data.MONGO_URI.includes('127.0.0.1') ||
+    data.MONGO_URI.startsWith('mongodb://127.0.0.1');
+
+  if (isLocalMongo) {
+    throw new Error(
+      'MONGO_URI cannot point to localhost in production. Create a free MongoDB Atlas cluster and set MONGO_URI to your Atlas connection string in Render Environment variables.'
+    );
+  }
+}
+
+export const env = data;
