@@ -17,8 +17,8 @@ A full-stack MERN lead management dashboard built for the **ServiceHive Full Sta
 |---------|-----|
 | **Frontend (Vercel)** | [https://smart-leads-woad.vercel.app](https://smart-leads-woad.vercel.app) |
 | **Backend API (Render)** | Set `VITE_API_BASE_URL` to your Render service URL + `/api/v1` |
-| **API Docs (Swagger)** | `https://<your-render-url>/api-docs` |
-| **Health Check** | `https://<your-render-url>/health` |
+| **API Docs (Swagger)** | `https://smart-leads-9ztw.onrender.com/api-docs` |
+| **Health Check** | `https://smart-leads-9ztw.onrender.com/health` |
 
 > After deploying the backend on Render, add `VITE_API_BASE_URL` in Vercel project settings (e.g. `https://smart-leads-api.onrender.com/api/v1`).
 
@@ -135,7 +135,7 @@ Default admin from `.env.example`: `admin@smartleads.io` / `ChangeMe123!`
 | **Start Command** | `npm start` |
 | **Node Version** | `20` (see `backend/.node-version`) |
 
-> **If deploy fails with `ECONNREFUSED 127.0.0.1:27017`:** your `MONGO_URI` is pointing to localhost. Use **MongoDB Atlas**, not local MongoDB. See [backend/docs/RENDER-DEPLOY.md](backend/docs/RENDER-DEPLOY.md).
+> **If deploy fails with `ECONNREFUSED 127.0.0.1:27017`:** set `MONGO_URI` to a **MongoDB Atlas** connection string on Render (not `localhost`).
 
 **Environment variables** (required on Render):
 
