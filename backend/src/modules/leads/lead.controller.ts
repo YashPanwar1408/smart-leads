@@ -31,7 +31,11 @@ export const leadController = {
       throw new AppError('Authentication required', 401, 'AUTH_REQUIRED');
     }
 
-    const lead = await leadService.getById(req.user, req.params.id);
+    const id = req.params.id;
+    if (!id) {
+      throw new AppError('Lead id is required', 400, 'VALIDATION_ERROR');
+    }
+    const lead = await leadService.getById(req.user, id);
     ok(res, lead);
   }),
   update: asyncHandler(async (req: Request, res: Response): Promise<void> => {
@@ -39,8 +43,12 @@ export const leadController = {
       throw new AppError('Authentication required', 401, 'AUTH_REQUIRED');
     }
 
+    const id = req.params.id;
+    if (!id) {
+      throw new AppError('Lead id is required', 400, 'VALIDATION_ERROR');
+    }
     const input = req.body as UpdateLeadInput;
-    const lead = await leadService.update(req.user, req.params.id, input);
+    const lead = await leadService.update(req.user, id, input);
     ok(res, lead);
   }),
   remove: asyncHandler(async (req: Request, res: Response): Promise<void> => {
@@ -48,8 +56,12 @@ export const leadController = {
       throw new AppError('Authentication required', 401, 'AUTH_REQUIRED');
     }
 
-    await leadService.remove(req.user, req.params.id);
-    ok(res, { id: req.params.id });
+    const id = req.params.id;
+    if (!id) {
+      throw new AppError('Lead id is required', 400, 'VALIDATION_ERROR');
+    }
+    await leadService.remove(req.user, id);
+    ok(res, { id });
   }),
   exportCsv: asyncHandler(async (req: Request, res: Response): Promise<void> => {
     if (!req.user) {

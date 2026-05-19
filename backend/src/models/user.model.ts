@@ -35,9 +35,10 @@ const userSchema = new Schema<UserAttrs>(
 
 userSchema.set('toJSON', {
   transform: (_doc, ret) => {
-    delete ret.passwordHash;
-    delete ret.__v;
-    return ret;
+    const output = { ...ret } as Record<string, unknown>;
+    delete output.passwordHash;
+    delete output.__v;
+    return output;
   }
 });
 

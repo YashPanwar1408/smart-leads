@@ -1,21 +1,15 @@
 import { authRepository } from './auth.repository.js';
 import type { AuthResult, LoginInput, RegisterInput } from './auth.dto.js';
+import type { UserDocument } from '../../models/user.model.js';
 import { UserRole } from '../../types/enums.js';
 import { AppError } from '../../utils/errors.js';
 import { comparePassword, hashPassword } from '../../utils/password.js';
 import { signAccessToken } from '../../utils/jwt.js';
 import type { SafeUser } from '../../types/auth.js';
 
-const toSafeUser = (user: {
-  _id: unknown;
-  name: string;
-  email: string;
-  role: UserRole;
-  createdAt: Date;
-  updatedAt: Date;
-}): SafeUser => {
+const toSafeUser = (user: UserDocument): SafeUser => {
   return {
-    id: String(user._id),
+    id: user._id.toString(),
     name: user.name,
     email: user.email,
     role: user.role,
@@ -40,13 +34,13 @@ export const authService = {
     });
 
     const accessToken = signAccessToken({
-      sub: user.id,
+      sub: user._id.toString(),
       email: user.email,
       role: user.role
     });
 
     return {
-      user: toSafeUser(user),
+      user: toSafeUser(user as UserDocument),
       accessToken
     };
   },
@@ -62,13 +56,13 @@ export const authService = {
     }
 
     const accessToken = signAccessToken({
-      sub: user.id,
+      sub: user._id.toString(),
       email: user.email,
       role: user.role
     });
 
     return {
-      user: toSafeUser(user),
+      user: toSafeUser(user as UserDocument),
       accessToken
     };
   },
@@ -78,6 +72,6 @@ export const authService = {
       throw new AppError('User not found', 404, 'USER_NOT_FOUND');
     }
 
-    return toSafeUser(user);
+    return toSafeUser(user as UserDocument);
   }
 };

@@ -14,7 +14,7 @@ export const validate = (schema: z.ZodSchema<unknown>, target: Target) => {
       throw new AppError('Validation error', 400, 'VALIDATION_ERROR', fieldErrors);
     }
 
-    (req as Record<string, unknown>)[target] = result.data;
+    (req as unknown as Record<string, unknown>)[target] = result.data;
     next();
   };
 };

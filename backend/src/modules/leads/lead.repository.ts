@@ -88,8 +88,8 @@ export const leadRepository = {
 
     return { items, total };
   },
-  findAll: async (filters: LeadFilters, sort: Record<string, SortOrder>) => {
+  findAll: async (filters: LeadFilters, sort: Record<string, SortOrder>): Promise<LeadDocument[]> => {
     const query = buildFilter(filters);
-    return LeadModel.find(query).sort(sort).exec();
+    return LeadModel.find(query).sort(sort).exec() as Promise<LeadDocument[]>;
   }
 };

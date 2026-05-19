@@ -1,8 +1,19 @@
 import { Parser } from 'json2csv';
+import type { Types } from 'mongoose';
 
-import type { LeadDocument } from '../models/lead.model.js';
+import { LeadSource, LeadStatus } from '../types/enums.js';
 
-export const leadsToCsv = (leads: LeadDocument[]): string => {
+interface LeadCsvSource {
+  _id: Types.ObjectId;
+  name: string;
+  email: string;
+  status: LeadStatus;
+  source: LeadSource;
+  ownerId: Types.ObjectId;
+  createdAt: Date;
+}
+
+export const leadsToCsv = (leads: LeadCsvSource[]): string => {
   const rows = leads.map((lead) => ({
     id: lead._id.toString(),
     name: lead.name,

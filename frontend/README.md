@@ -1,10 +1,34 @@
-# Smart Leads Dashboard Frontend
+# Smart Leads Dashboard — Frontend
 
-Production-grade React + TypeScript SaaS dashboard for managing sales leads. This README is designed to be recruiter‑friendly, beginner‑friendly, and team‑ready.
+**Author:** [Yash Panwar](https://github.com/YashPanwar1408)  
+**Repository:** [github.com/YashPanwar1408/smart-leads](https://github.com/YashPanwar1408/smart-leads)  
+**Live demo:** [https://smart-leads-woad.vercel.app](https://smart-leads-woad.vercel.app)
+
+Production-grade React + TypeScript SaaS dashboard for managing sales leads — premium UI, dark mode, RBAC, filters, and CSV export.
 
 ---
 
-## 1. Frontend Overview 🧭
+## Deploy on Vercel
+
+| Setting | Value |
+|---------|--------|
+| Root Directory | `frontend` |
+| Build Command | `npm run build` |
+| Output Directory | `dist` |
+| Environment | `VITE_API_BASE_URL=https://<your-render-api>.onrender.com/api/v1` |
+
+---
+
+## Screenshots
+
+![Login](../backend/docs/loginpage.png)
+![Dashboard](../backend/docs/dashboard.png)
+![Leads](../backend/docs/leads.png)
+![Dark mode](../backend/docs/darkmode.png)
+
+---
+
+## 1. Frontend Overview
 
 The frontend delivers a modern, responsive dashboard UI for authentication, lead management, filtering, and CSV reporting. It focuses on predictable state, reusable UI, and smooth interactions.
 

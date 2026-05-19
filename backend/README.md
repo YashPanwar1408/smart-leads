@@ -1,6 +1,37 @@
-# Smart Leads Dashboard Backend
+# Smart Leads Dashboard — Backend API
 
-Production-grade Node.js + Express + TypeScript backend for the Smart Leads Dashboard. This README is designed to be beginner-friendly while still documenting the system like an internal team handoff.
+**Author:** [Yash Panwar](https://github.com/YashPanwar1408)  
+**Repository:** [github.com/YashPanwar1408/smart-leads](https://github.com/YashPanwar1408/smart-leads)  
+**Frontend:** [smart-leads-woad.vercel.app](https://smart-leads-woad.vercel.app)
+
+Production-grade Node.js + Express + TypeScript REST API for lead management, JWT auth, RBAC, filtering, pagination, and CSV export.
+
+---
+
+## Deploy on Render
+
+| Setting | Value |
+|---------|--------|
+| Root Directory | `backend` |
+| Build Command | `npm install && npm run build` |
+| Start Command | `npm start` |
+| Node Version | `20` |
+
+**Required env vars:** `MONGO_URI`, `JWT_ACCESS_SECRET` (32+ chars), `CORS_ORIGIN=https://smart-leads-woad.vercel.app`, `NODE_ENV=production`
+
+See `.env.example` for the full list.
+
+---
+
+## Screenshots (Full App)
+
+| Login | Dashboard |
+|-------|-----------|
+| ![Login](docs/loginpage.png) | ![Dashboard](docs/dashboard.png) |
+
+| Leads | Dark mode |
+|-------|-----------|
+| ![Leads](docs/leads.png) | ![Dark mode](docs/darkmode.png) |
 
 ---
 

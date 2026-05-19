@@ -32,8 +32,9 @@ leadSchema.index({ name: 'text', email: 'text' });
 
 leadSchema.set('toJSON', {
   transform: (_doc, ret) => {
-    delete ret.__v;
-    return ret;
+    const output = { ...ret } as Record<string, unknown>;
+    delete output.__v;
+    return output;
   }
 });
 

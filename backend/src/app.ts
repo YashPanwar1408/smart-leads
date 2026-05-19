@@ -4,11 +4,15 @@ import express from 'express';
 import fs from 'node:fs';
 import path from 'node:path';
 import helmet from 'helmet';
-import pinoHttp from 'pino-http';
 import swaggerUi from 'swagger-ui-express';
+import { createRequire } from 'node:module';
+import type { RequestHandler } from 'express';
 
 import { env } from './config/env.js';
 import { logger } from './config/logger.js';
+
+const require = createRequire(import.meta.url);
+const pinoHttp = require('pino-http') as (options: { logger: typeof logger }) => RequestHandler;
 import { authenticate } from './middlewares/auth.middleware.js';
 import { errorHandler } from './middlewares/error.middleware.js';
 import { notFoundHandler } from './middlewares/not-found.middleware.js';
