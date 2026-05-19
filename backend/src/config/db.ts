@@ -24,6 +24,13 @@ export const connectDb = async (): Promise<void> => {
       );
     }
 
+    const message = error instanceof Error ? error.message : String(error);
+    if (message.includes('querySrv') || message.includes('ENOTFOUND')) {
+      throw new Error(
+        'MongoDB DNS lookup failed. Fix your MONGO_URI on Render: (1) Re-copy the full string from Atlas → Connect → Drivers. (2) URL-encode special characters in the password (@ → %40, # → %23). (3) Ensure there is exactly one @ before the cluster hostname (cluster0....mongodb.net).'
+      );
+    }
+
     throw error;
   }
 };

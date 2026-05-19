@@ -1,6 +1,8 @@
 import dotenv from 'dotenv';
 import { z } from 'zod';
 
+import { assertValidMongoUri } from './mongo-uri.js';
+
 dotenv.config();
 
 const envSchema = z.object({
@@ -26,6 +28,8 @@ if (!parsed.success) {
 }
 
 const data = parsed.data;
+
+assertValidMongoUri(data.MONGO_URI);
 
 if (data.NODE_ENV === 'production') {
   const isLocalMongo =
